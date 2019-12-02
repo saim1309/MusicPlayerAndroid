@@ -27,14 +27,17 @@ public class MainActivity extends AppCompatActivity {
         btn_rewind = findViewById(R.id.btn_rewind);
         btn_power = findViewById(R.id.btn_power);
 
+        //Play button functionality
         btn_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //check if music player played for the first time
                 if(mediaPlayer == null)
                 {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.song);
                     mediaPlayer.start();
                 }
+                //check if app is in pause state
                 else if(!mediaPlayer.isPlaying())
                 {
                     mediaPlayer.seekTo(pausePosition);
@@ -45,9 +48,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Pause button functionality
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //checking if music is running
                 if(mediaPlayer!=null)
                 {
                     mediaPlayer.pause();
@@ -57,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Stop button functionality
         btn_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               //checking if music is running
                 if(mediaPlayer!= null){
                     mediaPlayer.stop();
                     mediaPlayer = null;
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Power button functionality to close the app
         btn_power.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(mediaPlayer.isPlaying())
                 {
+                    //getting the current position of the music and adding 10 sec to it
                     currentPosition = mediaPlayer.getCurrentPosition() + 10000;
+                    //moving songs forward by 10sec
                     mediaPlayer.seekTo(currentPosition);
                     mediaPlayer.start();
                 }
